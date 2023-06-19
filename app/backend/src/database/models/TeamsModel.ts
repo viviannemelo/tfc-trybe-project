@@ -27,7 +27,7 @@ Team.init({
   },
 }, {
   sequelize: db,
-  // underscored: true,
+  underscored: true,
   modelName: 'teams',
   timestamps: false,
 });
