@@ -4,17 +4,12 @@ import {
 } from 'sequelize';
 import db from '.';
 
-export interface UserAttributes {
-  id: number;
-  username: string;
-  role: string;
-  email: string;
-  password: string;
-}
-
-class User extends Model<UserAttributes> {
-  declare id: number;
-  declare teamName: string;
+class User extends Model {
+  id!: number;
+  username!: string;
+  role!: string;
+  email!: string;
+  password!: string;
 }
 
 User.init({
