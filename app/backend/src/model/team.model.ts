@@ -1,8 +1,8 @@
 import Team from '../database/models/TeamsModel';
-import TeamsModelInterface from '../Interfaces/teams/TeamsModelInterface';
+// import TeamsModelInterface from '../Interfaces/teams/TeamsModelInterface';
 import ITeams from '../Interfaces/teams/ITeams';
 
-class TeamsModel implements TeamsModelInterface {
+class TeamsModel {
   private model = Team;
   async findAll(): Promise<ITeams[]> {
     const dbData = await this.model.findAll();

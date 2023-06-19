@@ -1,8 +1,10 @@
+/* eslint-disable import/no-cycle */
 import {
   DataTypes,
   Model,
-  Sequelize,
+  // Sequelize,
 } from 'sequelize';
+import db from '.';
 
 export interface TeamsAttributes {
   id: number;
@@ -28,8 +30,8 @@ Team.init({
 }, {
   underscored: true,
   timestamps: false,
-  modelName: 'Team',
-  sequelize: new Sequelize(),
+  modelName: 'teams',
+  sequelize: db,
 });
 
 /**
