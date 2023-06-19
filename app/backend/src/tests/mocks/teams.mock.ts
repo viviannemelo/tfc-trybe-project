@@ -13,6 +13,14 @@ const allTeams = [
     },
 ]
 
-export default {
+const team = [
+    {
+        "id": 5,
+        "teamName": "Cruzeiro"
+    }
+]
+
+export {
     allTeams,
+    team,
 }

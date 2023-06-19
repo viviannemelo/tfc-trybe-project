@@ -7,7 +7,7 @@ import { app } from '../app';
 import Teams from '../database/models/TeamsModel';
 
 import { Response } from 'superagent';
-import allTeams from './mocks/teams.mock';
+import { allTeams, team } from './mocks/teams.mock';
 
 chai.use(chaiHttp);
 
@@ -33,6 +33,30 @@ describe('Teste /teams', () => {
         it('Caso aconteça um erro ao retornar times deve retornar mensagem de erro', async () => {
             const httpResponse = (await chai.request(app).get('/teams'));
             expect(httpResponse.body).to.equal({ message: 'Não foi possível encontrar times'});
+        });
+    });
+});
+
+describe('Teste /teams/:id', () => {
+    beforeEach(function() { sinon.restore(); });
+
+    describe('Casos de sucesso', () => {
+        it('Método GET deve retornar json contendo informação de time específico', async () => {
+            const httpRequestBody = team;
+            const httpResponse = (await chai.request(app).get('/teams/5'));
+
+            expect(httpResponse.body).to.be.equal(httpRequestBody);
+        });
+        it('Método GET deve retornar status 200', async () => {
+            const httpResponse = (await chai.request(app).get('/teams/5'));
+            expect(httpResponse.status).to.equal(200);
+        });
+    });
+
+    describe('Casos de falha', () => {
+        it('Caso aconteça um erro ao retornar times deve retornar mensagem de erro', async () => {
+            const httpResponse = (await chai.request(app).get('/teams/5'));
+            expect(httpResponse.body).to.equal({ message: 'Não foi possível encontrar o time'});
         });
     });
 });
