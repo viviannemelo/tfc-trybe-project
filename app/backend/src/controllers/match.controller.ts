@@ -27,7 +27,24 @@ const finishMatch = async (req: Request, res: Response) => {
   }
 };
 
+const updateMatch = async (req: Request, res: Response) => {
+  const { homeTeamGoals, awayTeamGoals } = req.body;
+  const { id } = req.params;
+  const att = await MatchesService.updateMatch(+id, homeTeamGoals, awayTeamGoals);
+
+  if (att) {
+    return res.status(200).json({ message: 'Match updated' });
+  }
+};
+
+const createMatch = async (req: Request, res: Response) => {
+  const { code, result } = await MatchesService.createMatch(req.body);
+  return res.status(code).json(result);
+};
+
 export default {
   getTeams,
   finishMatch,
+  updateMatch,
+  createMatch,
 };
