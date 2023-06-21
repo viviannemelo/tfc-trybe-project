@@ -18,6 +18,16 @@ const getTeams = async (req: Request, res: Response) => {
   }
 };
 
+const finishMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const finishedMatch = await MatchesService.finishMatch(+id);
+
+  if (finishedMatch) {
+    return res.status(200).json({ message: 'Finished' });
+  }
+};
+
 export default {
   getTeams,
+  finishMatch,
 };
